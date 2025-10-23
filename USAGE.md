@@ -141,7 +141,7 @@ Donation → donatex.gg → ntfy topic → FixWidget → Display Widget Overlay
 
 ## PowerShell Script Examples
 
-### Send donatex.gg Test Message
+### Send ntfy Test Message
 
 ```powershell
 $timestamp = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()

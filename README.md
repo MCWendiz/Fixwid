@@ -288,7 +288,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📧 Contact
 
 - Create an issue for bug reports or feature requests
-- Follow me on GitHub: [@yourusername](https://github.com/yourusername)
 
 ## 🙏 Acknowledgments
 
