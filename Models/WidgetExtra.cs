@@ -7,18 +7,18 @@ public class WidgetExtra
     [JsonPropertyName("url")]
     public string Url { get; set; } = string.Empty;
 
-    // Гибкая десериализация для числовых полей
+    // Reference resolution for position scaling
     [JsonPropertyName("setupResolutionX")]
     public object? SetupResolutionXRaw { get; set; }
 
     [JsonIgnore]
-    public int SetupResolutionX => ParseInt(SetupResolutionXRaw, 1920);
+    public int SetupResolutionX => ParseInt(SetupResolutionXRaw, 2560);
 
     [JsonPropertyName("setupResolutionY")]
     public object? SetupResolutionYRaw { get; set; }
 
     [JsonIgnore]
-    public int SetupResolutionY => ParseInt(SetupResolutionYRaw, 1080);
+    public int SetupResolutionY => ParseInt(SetupResolutionYRaw, 1440);
 
     [JsonPropertyName("setupX")]
     public object? SetupXRaw { get; set; }

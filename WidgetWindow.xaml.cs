@@ -521,32 +521,35 @@ public partial class WidgetWindow : Window
 
     private void ApplyWindowConfiguration()
     {
-        // Получаем текущее разрешение экрана
+        // Get current screen resolution
         var screenWidth = SystemParameters.PrimaryScreenWidth;
         var screenHeight = SystemParameters.PrimaryScreenHeight;
 
-        // Вычисляем масштабирующий коэффициент для позиционирования
+        // Calculate scaling factor to adapt setupX/setupY from setup resolution to current resolution
+        // Example: setupResolution=1000x1000, setupX/Y=500,500 → on 2000x2000 screen → actualX/Y=1000,1000
         var scaleX = screenWidth / _config.SetupResolutionX;
         var scaleY = screenHeight / _config.SetupResolutionY;
 
-        // РАЗМЕР ОКНА: Всегда фиксированный 600x600 (НЕ зависит от scale!)
+        // Fixed window size: 1000x1000 (independent of scale parameter)
         Width = 1000;
         Height = 1000;
 
-        // Позиция окна - используем setupX/setupY с учетом масштаба экрана
+        // Window position: scale setupX/setupY coordinates from setup resolution to current screen resolution
         Left = _config.SetupX * scaleX;
         Top = _config.SetupY * scaleY;
 
-        // Прозрачность окна (но основная прозрачность через CSS)
-        Opacity = 1.0; // Окно всегда непрозрачное, прозрачность контента через CSS
+        // Window opacity (content transparency is applied via CSS)
+        Opacity = 1.0;
 
         System.Diagnostics.Debug.WriteLine($"=== WINDOW CONFIG APPLIED ===");
-        System.Diagnostics.Debug.WriteLine($"Position: setupX={_config.SetupX}, setupY={_config.SetupY}");
-        System.Diagnostics.Debug.WriteLine($"Window size: 600x600 (fixed)");
-        System.Diagnostics.Debug.WriteLine($"ContentZoom={_config.ContentZoom} (или scale={_config.Scale} если contentZoom не задан)");
-        System.Diagnostics.Debug.WriteLine($"Opacity={_config.Opacity}%");
-        System.Diagnostics.Debug.WriteLine($"Screen: {screenWidth}x{screenHeight}, ScaleFactor: {scaleX:F2}x{scaleY:F2}");
-        System.Diagnostics.Debug.WriteLine($"Final: Width={Width:F0}, Height={Height:F0}, Left={Left:F0}, Top={Top:F0}");
+        System.Diagnostics.Debug.WriteLine($"Setup Resolution: {_config.SetupResolutionX}×{_config.SetupResolutionY}");
+        System.Diagnostics.Debug.WriteLine($"Current Screen: {screenWidth}×{screenHeight}");
+        System.Diagnostics.Debug.WriteLine($"Scale Factor: X={scaleX:F3}, Y={scaleY:F3}");
+        System.Diagnostics.Debug.WriteLine($"Setup Position: setupX={_config.SetupX}, setupY={_config.SetupY}");
+        System.Diagnostics.Debug.WriteLine($"Actual Position: Left={Left:F0}, Top={Top:F0}");
+        System.Diagnostics.Debug.WriteLine($"Window Size: {Width:F0}×{Height:F0} (fixed)");
+        System.Diagnostics.Debug.WriteLine($"Content Zoom: {_config.ContentZoom} (fallback to scale={_config.Scale})");
+        System.Diagnostics.Debug.WriteLine($"Opacity: {_config.Opacity}%");
     }
 
     private void ApplyClickThrough()

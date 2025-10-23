@@ -166,7 +166,12 @@ actualX = setupX * (currentWidth / setupResolutionX)
 actualY = setupY * (currentHeight / setupResolutionY)
 ```
 
-This ensures consistent positioning across different screen resolutions.
+**Example:**
+- Setup: `setupX=500, setupY=500` on resolution `1000×1000` (`setupResolutionX/Y`)
+- Current screen: `2000×2000`
+- Result: Widget appears at `1000, 1000` (scale factor = 2.0)
+
+This ensures consistent relative positioning across different screen resolutions.
 
 ## 🏗️ Architecture
 

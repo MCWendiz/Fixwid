@@ -104,7 +104,19 @@ actualX = (setupX / setupResolutionX) * CurrentScreenWidth
 actualY = (setupY / setupResolutionY) * CurrentScreenHeight
 ```
 
-**Example**: Widget configured at (500, 500) on 2560×1440 will appear at (375, 375) on 1920×1080.
+Or more simply:
+```
+actualX = setupX * (CurrentScreenWidth / setupResolutionX)
+actualY = setupY * (CurrentScreenHeight / setupResolutionY)
+```
+
+**Example**: 
+- Setup: Widget at `setupX=500, setupY=500` on `setupResolution=1000×1000`
+- Client screen: `2000×2000`
+- Result: Widget displays at `1000, 1000`
+- Calculation: `500 * (2000/1000) = 500 * 2 = 1000`
+
+This ensures widgets appear at the same **relative position** regardless of screen resolution.
 
 ## donatex.gg Integration
 
